@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Paths, One Decision · A Guide to Biotechnology, Biomedical Engineering, and Bioengineering</title>
+<meta name="description" content="An institutional decision guide for choosing between Biotechnology, Biomedical Engineering, and Bioengineering as an Indian undergraduate.">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   ROOT
+   ============================================================ */
+:root {
+  --paper:    #fbfaf7;
+  --ink:      #1a1a1a;
+  --body:     #2a2a2a;
+  --muted:    #595552;
+  --faint:    #8a857f;
+  --rule:     #d4cec3;
+  --rule-strong: #a89f92;
+  --crimson:  #8b1a1a;
+  --crimson-dark: #6b1414;
+
+  --serif: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
+  --sans:  'Source Sans 3', 'Source Sans Pro', -apple-system, system-ui, sans-serif;
+
+  --measure: 680px;
+  --wide:    1080px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--body);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-optical-sizing: auto;
+}
+
+/* Subtle paper texture via layered gradients (no external images) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 800px at 20% 10%, rgba(139,26,26,0.015), transparent 60%),
+    radial-gradient(1000px 700px at 90% 90%, rgba(90,80,60,0.02), transparent 60%);
+  z-index: -1;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1, h2, h3, h4 { font-family: var(--serif); color: var(--ink); font-weight: 500; letter-spacing: -0.01em; margin: 0; }
+h1 { font-weight: 400; }
+
+p { margin: 0 0 1em 0; }
+em { font-style: italic; }
+strong { font-weight: 600; color: var(--ink); }
+a { color: var(--crimson); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .15s; }
+a:hover { border-color: var(--crimson); }
+
+.smallcaps {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.smallcaps-alt {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  backdrop-filter: saturate(1.1);
+}
+.masthead-inner {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+}
+.masthead-title::before { content: '— '; color: var(--faint); }
+.masthead-nav { display: flex; gap: 24px; font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; }
+.masthead-nav a { color: var(--muted); border: none; }
+.masthead-nav a:hover { color: var(--crimson); }
+@media (max-width: 780px) { .masthead-nav { display: none; } }
+
+/* ============================================================
+   NAMEPLATE / LEDE
+   ============================================================ */
+main { max-width: var(--wide); margin: 0 auto; padding: 0 32px; }
+
+.nameplate {
+  padding: 96px 0 48px 0;
+  border-bottom: 3px double var(--rule-strong);
+}
+.dateline {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+.headline {
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.02;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 900px;
+  margin-bottom: 20px;
+}
+.headline em { color: var(--crimson); font-style: italic; }
+.deck {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.2vw, 24px);
+  line-height: 1.45;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 720px;
+  font-weight: 400;
+}
+.byline {
+  margin-top: 40px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-weight: 500;
+}
+
+/* ============================================================
+   LEDE PARAGRAPH (DROP CAP)
+   ============================================================ */
+.lede {
+  max-width: var(--measure);
+  margin: 64px auto 0 auto;
+  font-size: 20px;
+  line-height: 1.65;
+  color: var(--body);
+}
+.lede p:first-child::first-letter {
+  font-family: var(--serif);
+  font-weight: 500;
+  float: left;
+  font-size: 5.2em;
+  line-height: 0.82;
+  padding: 6px 12px 0 0;
+  color: var(--crimson);
+}
+.lede p { margin-bottom: 1.1em; }
+
+/* Reading confidence key */
+.key {
+  max-width: var(--measure);
+  margin: 40px auto 0 auto;
+  padding: 20px 24px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.key strong { font-family: var(--sans); font-weight: 600; color: var(--ink); }
+.tag { display: inline-block; padding: 1px 6px; margin: 0 2px; font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.08em; border: 1px solid var(--rule); border-radius: 2px; vertical-align: 1px; color: var(--muted); }
+.tag-c { color: #1e5128; background: #edf5ee; border-color: #c9dfc8; }
+.tag-l { color: #7c5a12; background: #faf3e0; border-color: #e6d9a5; }
+.tag-g { color: #7a2323; background: #f5e8e6; border-color: #e0c1bc; }
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+section {
+  padding: 96px 0;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 60px;
+}
+.section-num {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 20px;
+  display: block;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(34px, 4.5vw, 52px);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  max-width: 760px;
+  margin-bottom: 20px;
+}
+.section-standfirst {
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--muted);
+  font-style: italic;
+  max-width: var(--measure);
+  margin-bottom: 40px;
+}
+.section-body { max-width: var(--measure); }
+.section-body p { margin-bottom: 1.2em; }
+
+.footnote-line {
+  max-width: var(--measure);
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* Section head grid (title left, standfirst right, editorial layout) */
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 48px;
+  margin-bottom: 56px;
+  align-items: end;
+}
+@media (max-width: 780px) {
+  .section-head { grid-template-columns: 1fr; gap: 20px; }
+}
+
+/* ============================================================
+   FIGURE + CHART
+   ============================================================ */
+figure { margin: 0; }
+.figure {
+  margin: 40px auto;
+  max-width: var(--wide);
+}
+.figure-frame {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding: 32px 0 24px 0;
+}
+.figure-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.figure-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.figure-caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 700px;
+  margin-top: 20px;
+}
+.chart-box { position: relative; width: 100%; height: 380px; margin: 24px 0; }
+@media (min-width: 780px) { .chart-box { height: 460px; } }
+
+/* Spectrum interpretation column */
+.spectrum-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 900px) { .spectrum-layout { grid-template-columns: 1fr; } }
+.interp {
+  padding: 20px 0 20px 24px;
+  border-left: 1px solid var(--rule);
+}
+.interp + .interp { margin-top: 24px; }
+.interp-label { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--crimson); margin-bottom: 8px; }
+.interp p { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0; }
+
+/* ============================================================
+   SHARED CORE - COURSE LIST
+   ============================================================ */
+.courses {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+@media (max-width: 700px) { .courses { grid-template-columns: 1fr; } }
+.course {
+  border-bottom: 1px solid var(--rule);
+  padding: 24px 0;
+  cursor: pointer;
+  transition: background .15s;
+}
+.course:nth-child(odd) { padding-right: 40px; border-right: 1px solid var(--rule); }
+.course:nth-child(even) { padding-left: 40px; }
+@media (max-width: 700px) {
+  .course:nth-child(odd) { border-right: none; padding-right: 0; }
+  .course:nth-child(even) { padding-left: 0; }
+}
+.course:hover { background: rgba(139,26,26,0.02); }
+.course-head { display: flex; justify-content: space-between; align-items: baseline; }
+.course-label { font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); font-weight: 600; }
+.course-name { font-family: var(--serif); font-size: 20px; color: var(--ink); margin-top: 2px; font-weight: 500; }
+.course-toggle { font-family: var(--serif); font-size: 20px; color: var(--faint); font-style: italic; }
+.course-body {
+  display: none;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dotted var(--rule);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.course.open .course-body { display: block; }
+.course.open .course-toggle { transform: rotate(45deg); }
+
+/* ============================================================
+   TRACKS
+   ============================================================ */
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 48px;
+  overflow-x: auto;
+}
+.tab {
+  background: transparent;
+  border: none;
+  padding: 16px 28px 14px 0;
+  margin-right: 32px;
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-weight: 400;
+  font-style: italic;
+  transition: color .15s;
+  white-space: nowrap;
+}
+.tab:hover { color: var(--ink); }
+.tab.active { color: var(--ink); border-color: var(--crimson); font-style: normal; font-weight: 500; }
+
+.track-panel { display: none; }
+.track-panel.active { display: block; }
+
+.track-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 64px;
+}
+@media (max-width: 900px) { .track-layout { grid-template-columns: 1fr; gap: 32px; } }
+
+.track-question-label { font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--crimson); font-weight: 600; margin-bottom: 12px; }
+.track-question {
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--ink);
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+.track-daytitle {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.track-day {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.track-block { margin-bottom: 40px; }
+.track-block-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.track-courselist { list-style: none; padding: 0; margin: 0; }
+.track-courselist li {
+  padding: 8px 0;
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--body);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 12px;
+  border-bottom: 1px dotted var(--rule);
+}
+.track-courselist li:last-child { border-bottom: none; }
+.track-courselist .num { font-family: var(--sans); font-size: 12px; color: var(--faint); font-weight: 500; padding-top: 4px; letter-spacing: 0.05em; }
+.track-block p { font-family: var(--serif); font-size: 17px; line-height: 1.6; color: var(--muted); }
+
+/* ============================================================
+   QUIZ / DIAGNOSTIC
+   ============================================================ */
+.diagnostic {
+  max-width: 780px;
+  margin: 0 auto;
+  border: 1px solid var(--rule-strong);
+  padding: 56px 48px;
+  background: #fdfcfa;
+  position: relative;
+}
+.diagnostic::before {
+  content: 'A SELF-ASSESSMENT';
+  position: absolute;
+  top: -11px;
+  left: 40px;
+  background: var(--paper);
+  padding: 0 16px;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  font-weight: 600;
+}
+@media (max-width: 700px) { .diagnostic { padding: 40px 24px; } }
+
+.q-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.q-progress { height: 1px; background: var(--rule); margin-bottom: 32px; position: relative; }
+.q-progress-fill { position: absolute; top: 0; left: 0; height: 3px; margin-top: -1px; background: var(--crimson); transition: width .3s; }
+.q-text {
+  font-family: var(--serif);
+  font-size: 26px;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+.q-options { display: flex; flex-direction: column; gap: 10px; }
+.q-option {
+  text-align: left;
+  padding: 16px 20px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--body);
+  cursor: pointer;
+  transition: all .15s;
+}
+.q-option:hover { border-color: var(--crimson); color: var(--ink); }
+
+.results-headline {
+  font-family: var(--serif);
+  font-size: 32px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+.results-headline em { color: var(--crimson); font-style: italic; }
+.result-row { margin-bottom: 24px; }
+.result-row-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.result-name { font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--ink); }
+.result-pct { font-family: var(--sans); font-size: 14px; color: var(--muted); font-weight: 500; }
+.result-bar { height: 2px; background: var(--rule); position: relative; overflow: hidden; }
+.result-bar-fill { position: absolute; top: 0; left: 0; height: 100%; transition: width .5s; }
+.result-body { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--rule); font-family: var(--serif); font-size: 16px; line-height: 1.6; color: var(--muted); font-style: italic; }
+.result-retake { margin-top: 24px; }
+
+.btn-plain {
+  background: transparent;
+  border: none;
+  color: var(--crimson);
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  border-bottom: 1px solid var(--crimson);
+}
+
+/* ============================================================
+   INDIA LANDSCAPE
+   ============================================================ */
+.landscape {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+}
+@media (max-width: 900px) { .landscape { grid-template-columns: 1fr; } }
+.landscape > div {
+  padding: 32px 28px 32px 0;
+  border-right: 1px solid var(--rule);
+}
+.landscape > div:last-child { border-right: none; padding-right: 0; }
+.landscape > div:nth-child(2) { padding-left: 28px; }
+.landscape > div:nth-child(3) { padding-left: 28px; }
+@media (max-width: 900px) {
+  .landscape > div { border-right: none; border-bottom: 1px solid var(--rule); padding: 32px 0; }
+  .landscape > div:nth-child(n) { padding-left: 0; }
+}
+.field-name { font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.field-name em { color: var(--crimson); font-weight: 400; }
+.tier { margin-top: 20px; }
+.tier-label { font-family: var(--sans); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 8px; }
+.tier ul { list-style: none; padding: 0; margin: 0; }
+.tier li { font-family: var(--serif); font-size: 15px; line-height: 1.5; color: var(--body); padding: 4px 0; }
+.field-note { font-family: var(--serif); font-size: 14px; font-style: italic; line-height: 1.55; color: var(--muted); margin-top: 20px; padding-top: 16px; border-top: 1px dotted var(--rule); }
+
+.editorial-note {
+  max-width: var(--measure);
+  margin: 48px auto 0 auto;
+  padding: 24px 32px;
+  border-left: 3px solid var(--crimson);
+  background: rgba(139,26,26,0.03);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--body);
+}
+.editorial-note-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* ============================================================
+   DEGREE CEILINGS
+   ============================================================ */
+.ceilings > .row {
+  display: grid;
+  grid-template-columns: 180px 1fr 220px;
+  gap: 48px;
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.ceilings > .row:last-child { border-bottom: none; }
+@media (max-width: 900px) {
+  .ceilings > .row { grid-template-columns: 1fr; gap: 16px; }
+}
+.deg-mark {
+  font-family: var(--serif);
+  font-size: 72px;
+  line-height: 0.85;
+  color: var(--ink);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+.deg-sub { font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 12px; }
+.deg-body { font-family: var(--serif); font-size: 17px; line-height: 1.6; color: var(--body); }
+.deg-body .num { font-family: var(--sans); font-weight: 600; color: var(--ink); letter-spacing: 0.02em; }
+.deg-ceiling-label { font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+.deg-ceiling-bar { height: 2px; background: var(--rule); position: relative; }
+.deg-ceiling-fill { position: absolute; top: 0; left: 0; height: 100%; background: var(--ink); }
+.deg-ceiling-note { font-family: var(--serif); font-style: italic; font-size: 14px; line-height: 1.5; color: var(--muted); margin-top: 12px; }
+
+.field-ceiling-notes {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+@media (max-width: 900px) { .field-ceiling-notes { grid-template-columns: 1fr; } }
+.field-ceiling-notes h4 { font-family: var(--serif); font-size: 20px; font-weight: 500; color: var(--ink); margin-bottom: 8px; font-style: italic; }
+.field-ceiling-notes p { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: var(--muted); }
+
+/* ============================================================
+   REGULATORY
+   ============================================================ */
+.reg-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 40px;
+}
+@media (max-width: 780px) { .reg-tabs { grid-template-columns: 1fr; } }
+.reg-tab {
+  padding: 24px;
+  border-right: 1px solid var(--rule);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background .15s;
+  font-family: var(--serif);
+}
+.reg-tab:last-child { border-right: none; }
+@media (max-width: 780px) { .reg-tab { border-right: none; border-bottom: 1px solid var(--rule); } }
+.reg-tab:hover { background: rgba(139,26,26,0.03); }
+.reg-tab.active { background: var(--ink); color: var(--paper); }
+.reg-tab.active .reg-tab-cat { color: rgba(255,255,255,0.6); }
+.reg-tab.active .reg-tab-desc { color: rgba(255,255,255,0.75); }
+.reg-tab-cat { font-family: var(--sans); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+.reg-tab-risk { font-family: var(--serif); font-size: 20px; color: var(--ink); font-weight: 500; margin-bottom: 4px; }
+.reg-tab.active .reg-tab-risk { color: var(--paper); }
+.reg-tab-desc { font-family: var(--serif); font-style: italic; font-size: 14px; color: var(--muted); }
+
+.reg-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  padding: 32px 0;
+}
+@media (max-width: 780px) { .reg-detail { grid-template-columns: 1fr; } }
+.reg-jur h5 { font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--crimson); font-weight: 600; margin-bottom: 8px; }
+.reg-jur p { font-family: var(--serif); font-size: 16px; line-height: 1.6; color: var(--body); }
+.reg-jur + .reg-jur { margin-top: 24px; }
+.reg-stat-label { font-family: var(--sans); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 6px; }
+.reg-stat-value { font-family: var(--serif); font-size: 28px; color: var(--ink); font-weight: 500; margin-bottom: 24px; }
+.reg-career { padding-top: 20px; border-top: 1px solid var(--rule); }
+.reg-career p { font-family: var(--serif); font-style: italic; font-size: 16px; line-height: 1.6; color: var(--muted); }
+
+/* ============================================================
+   HUBS
+   ============================================================ */
+.hubs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-top: 24px;
+}
+@media (max-width: 900px) { .hubs { grid-template-columns: 1fr; gap: 40px; } }
+.hubs h4 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ink);
+  font-weight: 500;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: 24px;
+}
+.hub {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.hub:last-child { border-bottom: none; }
+.hub-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; gap: 12px; }
+.hub-name { font-family: var(--serif); font-size: 19px; color: var(--ink); font-weight: 500; }
+.hub-cat { font-family: var(--sans); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); font-weight: 600; text-align: right; white-space: nowrap; }
+.hub-desc { font-family: var(--serif); font-size: 15px; line-height: 1.55; color: var(--muted); margin: 0; }
+
+/* ============================================================
+   TAKEAWAY
+   ============================================================ */
+.takeaway {
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+.takeaway .section-num { text-align: center; margin-bottom: 32px; }
+.takeaway .section-title { text-align: center; max-width: 100%; margin: 0 auto 64px auto; }
+.takeaway-q {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.takeaway-q:last-child { border-bottom: none; }
+.takeaway-q h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.takeaway-q h3 .num { font-family: var(--serif); font-style: normal; color: var(--crimson); margin-right: 12px; }
+.takeaway-q p { font-family: var(--serif); font-size: 17px; line-height: 1.6; color: var(--muted); }
+
+/* ============================================================
+   COLOPHON
+   ============================================================ */
+.colophon {
+  padding: 80px 0 48px 0;
+  border-top: 3px double var(--rule-strong);
+  text-align: center;
+  max-width: var(--measure);
+  margin: 0 auto;
+}
+.colophon-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.colophon p {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  font-style: italic;
+}
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 32px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  font-weight: 500;
+  margin-top: 60px;
+}
+footer span + span::before { content: '·'; margin: 0 12px; color: var(--rule-strong); }
+
+/* Utility */
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     MASTHEAD
+     ============================================================ -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-title">A Decision Guide</div>
+    <nav class="masthead-nav">
+      <a href="#spectrum">Spectrum</a>
+      <a href="#core">Core</a>
+      <a href="#tracks">Tracks</a>
+      <a href="#assessment">Assessment</a>
+      <a href="#india">India</a>
+      <a href="#ceiling">Degree</a>
+      <a href="#careers">Careers</a>
+    </nav>
+  </div>
+</div>
+
+<main>
+
+<!-- ============================================================
+     NAMEPLATE
+     ============================================================ -->
+<div class="nameplate">
+  <div class="dateline">
+    <span>Volume I · Number 1</span>
+    <span>2026</span>
+  </div>
+  <h1 class="headline">
+    Three paths.<br>
+    <em>One</em> decision.
+  </h1>
+  <p class="deck">
+    Biotechnology, Biomedical Engineering, and Bioengineering sound like the same field. They are not. What follows is a working guide for a student choosing between them.
+  </p>
+  <div class="byline">A Guide for the Undergraduate Deciding at 18</div>
+</div>
+
+<!-- ============================================================
+     LEDE
+     ============================================================ -->
+<div class="lede">
+  <p>Three closely related majors, three overlapping course catalogues, three career pages that could be swapped without anyone noticing. The similarity is real. The differences that matter show up not in the brochures but in what a student actually does in the laboratory during the third and fourth years, and in what those years unlock a decade later.</p>
+  <p>The choice made at eighteen sets the ceiling on what is possible at thirty. The purpose of this guide is to make that ceiling legible before it becomes binding.</p>
+</div>
+
+<div class="key">
+  <strong>A note on evidence.</strong> Every numeric claim below carries a confidence tag:
+  <span class="tag tag-c">C</span> certain, drawn from published sources;
+  <span class="tag tag-l">L</span> likely, based on strong inference from established patterns;
+  <span class="tag tag-g">G</span> guessing, filled in where data is thin. When most of a claim is guessing, that is stated plainly. The alternative — presenting speculation as authority — is what this guide is written against.
+</div>
+
+<!-- ============================================================
+     I. SPECTRUM
+     ============================================================ -->
+<section id="spectrum">
+  <div class="section-head">
+    <div>
+      <span class="section-num">I. The Spectrum</span>
+      <h2 class="section-title">Where each field sits.</h2>
+    </div>
+    <p class="section-standfirst">The three fields overlap. They are not, however, interchangeable. Weighted against six skill axes drawn from ABET and AICTE curricular comparisons, each occupies a distinct region of the same intellectual territory.</p>
+  </div>
+
+  <div class="spectrum-layout">
+    <figure class="figure" style="margin: 0;">
+      <div class="figure-frame">
+        <div class="figure-label">Figure 1</div>
+        <div class="figure-title">Skill weighting across three biological-engineering majors</div>
+        <div class="chart-box">
+          <canvas id="radarChart"></canvas>
+        </div>
+        <p class="figure-caption">Values are consensus-level, not empirical. Programs vary; the shape of the difference does not. <span class="tag tag-l">L</span></p>
+      </div>
+    </figure>
+
+    <div>
+      <div class="interp">
+        <div class="interp-label">Biotechnology</div>
+        <p>Weights heaviest on wet-lab biology and chemistry, lightest on hardware. If pipettes and cell culture are the appeal, this is the natural home.</p>
+      </div>
+      <div class="interp">
+        <div class="interp-label">Biomedical Engineering</div>
+        <p>Weights heaviest on physics, hardware, and clinical application. Biology is applied, not primary. The most engineering-adjacent of the three.</p>
+      </div>
+      <div class="interp">
+        <div class="interp-label">Bioengineering</div>
+        <p>Weights heaviest on mathematics, computation, and systems modeling. The most abstract of the three, closest to a quantitative biology degree.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     II. SHARED CORE
+     ============================================================ -->
+<section id="core">
+  <div class="section-head">
+    <div>
+      <span class="section-num">II. The Shared Core</span>
+      <h2 class="section-title">Years one and two look nearly identical.</h2>
+    </div>
+    <p class="section-standfirst">Whichever of the three is chosen, the first two years overlap almost entirely. Which is why the panic that accompanies the choice at eighteen is often misplaced. There is time. What matters is knowing what to look for once the specialization begins.</p>
+  </div>
+
+  <p class="smallcaps-alt" style="max-width: var(--measure); margin-bottom: 24px;">Select any course for its role in the sequence.</p>
+
+  <div class="courses" id="courses">
+    <div class="course">
+      <div class="course-head">
+        <div>
+          <div class="course-label">Mathematics</div>
+          <div class="course-name">Differential Equations</div>
+        </div>
+        <div class="course-toggle">+</div>
+      </div>
+      <div class="course-body">
+        The language of anything that changes over time — drug concentration in blood, tumor growth kinetics, action potentials. Students who cannot make this click will find engineering biology permanently foggy.
+      </div>
+    </div>
+    <div class="course">
+      <div class="course-head">
+        <div>
+          <div class="course-label">Mathematics</div>
+          <div class="course-name">Linear Algebra</div>
+        </div>
+        <div class="course-toggle">+</div>
+      </div>
+      <div class="course-body">
+        The mathematics behind imaging (MRI, CT), machine learning, and any high-dimensional biological dataset. Biomedical Engineering and Bioengineering lean on this hardest.
+      </div>
+    </div>
+    <div class="course">
+      <div class="course-head">
+        <div>
+          <div class="course-label">Mathematics</div>
+          <div class="course-name">Statistics &amp; Biostatistics</div>
+        </div>
+        <div class="course-toggle">+</div>
+      </div>
+      <div class="course-body">
+        Not optional in any track. Clinical trials, gene expression, sensor noise — every real-world biological signal requires statistical framing.
+      </div>
+    </div>
+    <div class="course">
+      <div class="course-head">
+        <div>
+          <div class="course-label">Science</div>
+          <div class="course-name">Organic Chemistry &amp; Biochemistry</div>
+        </div>
+        <div class="course-toggle">+</div>
+      </div>
+      <div class="course-body">
+        Heaviest in Biotechnology, moderate in Bioengineering, lightest in Biomedical Engineering. Students who find chemistry a memorization torture should read that as a signal.
+      </div>
+    </div>
+    <div class="course">
+      <div class="course-head">
+        <div>
+          <div class="course-label">Science</div>
+          <div class="course-name">Physics (Mechanics &amp; E&amp;M)</div>
+        </div>
+        <div class="course-toggle">+</div>
+      </div>
+      <div class="course-body">
+        The BME payload. Fluid mechanics for blood flow, electromagnetism for MRI and pacemakers, mechanics for prosthetics. A weak grounding here forecloses the BME track.
+      </div>
+    </div>
+    <div class="course">
+      <div class="course-head">
+        <div>
+          <div class="course-label">Biology</div>
+          <div class="course-name">Molecular &amp; Cell Biology</div>
+        </div>
+        <div class="course-toggle">+</div>
+      </div>
+      <div class="course-body">
+        The system to be engineered. Cell signaling, genetics, gene expression. Central to Biotechnology and Bioengineering; contextual to Biomedical Engineering.
+      </div>
+    </div>
+    <div class="course">
+      <div class="course-head">
+        <div>
+          <div class="course-label">Computing</div>
+          <div class="course-name">Programming (Python and MATLAB)</div>
+        </div>
+        <div class="course-toggle">+</div>
+      </div>
+      <div class="course-body">
+        The single highest-leverage skill across all three fields. Python for bioinformatics and machine learning; MATLAB for signal processing and control. Both, learned properly, not sampled.
+      </div>
+    </div>
+    <div class="course">
+      <div class="course-head">
+        <div>
+          <div class="course-label">Engineering</div>
+          <div class="course-name">Circuits &amp; Signals</div>
+        </div>
+        <div class="course-toggle">+</div>
+      </div>
+      <div class="course-body">
+        The gateway to medical instrumentation, wearables, and imaging. BME-heavy. Skippable in pure Biotechnology; useful in Bioengineering.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     III. TRACKS
+     ============================================================ -->
+<section id="tracks">
+  <div class="section-head">
+    <div>
+      <span class="section-num">III. The Tracks</span>
+      <h2 class="section-title">Years three and four are where the three diverge.</h2>
+    </div>
+    <p class="section-standfirst">Different laboratories, different textbooks, different internships. The signature question a field asks, the shape of the capstone project, and the industries hiring each specialization.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-track="biotech">Biotechnology</button>
+    <button class="tab" data-track="bme">Biomedical Engineering</button>
+    <button class="tab" data-track="bioe">Bioengineering</button>
+  </div>
+
+  <div id="panel-biotech" class="track-panel active">
+    <div class="track-layout">
+      <div>
+        <div class="track-question-label">The signature question</div>
+        <p class="track-question">How does one mass-produce a therapeutic molecule from a living cell?</p>
+        <div class="track-daytitle">A day in the fourth year</div>
+        <p class="track-day">A Tuesday: two hours culturing CHO cells in the morning; a bioprocess laboratory in the afternoon running a small fermenter; an evening reading a paper on monoclonal antibody yield optimization. The rhythm is bench-heavy and protocol-driven.</p>
+      </div>
+      <div>
+        <div class="track-block">
+          <div class="track-block-label">Advanced coursework</div>
+          <ul class="track-courselist">
+            <li><span class="num">01</span>Bioprocess Engineering &amp; Fermentation Technology</li>
+            <li><span class="num">02</span>Genetic Engineering &amp; Recombinant DNA</li>
+            <li><span class="num">03</span>Immunology &amp; Vaccine Development</li>
+            <li><span class="num">04</span>Downstream Processing &amp; Bioseparations</li>
+            <li><span class="num">05</span>Bioinformatics &amp; Genomics</li>
+          </ul>
+        </div>
+        <div class="track-block">
+          <div class="track-block-label">The shape of the capstone</div>
+          <p>Typically a wet-lab project: optimizing the yield of a recombinant protein, developing a diagnostic assay, engineering a microbial strain for a specific compound. The deliverable is data plus a process protocol.</p>
+        </div>
+        <div class="track-block">
+          <div class="track-block-label">Where it leads</div>
+          <p>Pharmaceutical R&amp;D, vaccine manufacturers, agri-biotechnology, food technology, contract research organizations. India has genuine employer depth here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-bme" class="track-panel">
+    <div class="track-layout">
+      <div>
+        <div class="track-question-label">The signature question</div>
+        <p class="track-question">How does one build a device that interfaces safely with the human body?</p>
+        <div class="track-daytitle">A day in the fourth year</div>
+        <p class="track-day">A Tuesday: a circuits laboratory prototyping an ECG front-end; a medical imaging class working through the Fourier reconstruction of MRI slices; an afternoon shadowing a cardiologist using the tools the student is being trained to build. Hardware and clinic. Not pipettes.</p>
+      </div>
+      <div>
+        <div class="track-block">
+          <div class="track-block-label">Advanced coursework</div>
+          <ul class="track-courselist">
+            <li><span class="num">01</span>Medical Imaging &amp; Instrumentation</li>
+            <li><span class="num">02</span>Biosignal Processing</li>
+            <li><span class="num">03</span>Biomechanics &amp; Prosthetics</li>
+            <li><span class="num">04</span>Biomaterials &amp; Implant Design</li>
+            <li><span class="num">05</span>Medical Device Regulation (FDA &amp; CDSCO)</li>
+          </ul>
+        </div>
+        <div class="track-block">
+          <div class="track-block-label">The shape of the capstone</div>
+          <p>Usually a device: a wearable sensor, a low-cost imaging tool, a prosthetic prototype, a signal-processing pipeline. The deliverable is a working artefact plus a validation study.</p>
+        </div>
+        <div class="track-block">
+          <div class="track-block-label">Where it leads</div>
+          <p>Medical device companies, hospital biomedical engineering departments, imaging manufacturers, clinical-technology startups. Global majors — GE Healthcare, Philips, Siemens — operate substantial R&amp;D centres in Bengaluru.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="panel-bioe" class="track-panel">
+    <div class="track-layout">
+      <div>
+        <div class="track-question-label">The signature question</div>
+        <p class="track-question">How does one model, simulate, or re-engineer a living system?</p>
+        <div class="track-daytitle">A day in the fourth year</div>
+        <p class="track-day">A Tuesday: writing Python to fit a differential-equation model of gene regulation; a systems biology lecture; an evening seeding a hydrogel scaffold for a tissue engineering project. More screen time than pipette time.</p>
+      </div>
+      <div>
+        <div class="track-block">
+          <div class="track-block-label">Advanced coursework</div>
+          <ul class="track-courselist">
+            <li><span class="num">01</span>Tissue Engineering &amp; Regenerative Medicine</li>
+            <li><span class="num">02</span>Systems &amp; Synthetic Biology</li>
+            <li><span class="num">03</span>Computational Biology &amp; Modelling</li>
+            <li><span class="num">04</span>Biomolecular Engineering</li>
+            <li><span class="num">05</span>Machine Learning for Biology</li>
+          </ul>
+        </div>
+        <div class="track-block">
+          <div class="track-block-label">The shape of the capstone</div>
+          <p>Often a modelling or design project: engineering a genetic circuit, modelling a metabolic pathway, building a machine learning pipeline for protein structure prediction. Code plus a validation experiment.</p>
+        </div>
+        <div class="track-block">
+          <div class="track-block-label">Where it leads</div>
+          <p>The narrowest job market of the three at the undergraduate level, but the fastest ceiling growth: computational biology, AI-for-drug-discovery, synthetic biology startups, academia. Frequently a stepping stone to a doctorate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     IV. ASSESSMENT
+     ============================================================ -->
+<section id="assessment">
+  <div class="section-head">
+    <div>
+      <span class="section-num">IV. A Diagnostic</span>
+      <h2 class="section-title">Which of the three matches instinct?</h2>
+    </div>
+    <p class="section-standfirst">Five questions. The result is a lean, not a verdict. Where the numbers land is less important than which of the three you find yourself hoping wins.</p>
+  </div>
+
+  <div class="diagnostic">
+    <div id="quiz-step">
+      <div class="q-meta">
+        <span id="q-num">Question I of V</span>
+        <span id="q-pct">20 per cent</span>
+      </div>
+      <div class="q-progress"><div class="q-progress-fill" id="q-bar" style="width: 20%;"></div></div>
+      <h3 id="q-text" class="q-text"></h3>
+      <div id="q-options" class="q-options"></div>
+    </div>
+    <div id="quiz-results" class="hidden">
+      <h3 id="result-headline" class="results-headline"></h3>
+      <div class="result-row">
+        <div class="result-row-head"><span class="result-name">Biotechnology</span><span class="result-pct" id="s-biotech">0%</span></div>
+        <div class="result-bar"><div class="result-bar-fill" id="b-biotech" style="background: #556b2f;"></div></div>
+      </div>
+      <div class="result-row">
+        <div class="result-row-head"><span class="result-name">Biomedical Engineering</span><span class="result-pct" id="s-bme">0%</span></div>
+        <div class="result-bar"><div class="result-bar-fill" id="b-bme" style="background: #3b6b7a;"></div></div>
+      </div>
+      <div class="result-row">
+        <div class="result-row-head"><span class="result-name">Bioengineering</span><span class="result-pct" id="s-bioe">0%</span></div>
+        <div class="result-bar"><div class="result-bar-fill" id="b-bioe" style="background: #8b1a1a;"></div></div>
+      </div>
+      <p id="result-body" class="result-body"></p>
+      <div class="result-retake"><button class="btn-plain" onclick="resetQuiz()">Retake the assessment</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     V. INDIA
+     ============================================================ -->
+<section id="india">
+  <div class="section-head">
+    <div>
+      <span class="section-num">V. The Indian Landscape</span>
+      <h2 class="section-title">Where each field is actually taught.</h2>
+    </div>
+    <p class="section-standfirst">The three majors are not equally available in India. Biotechnology is offered nearly everywhere. Biomedical Engineering is concentrated in a handful of good institutions. Bioengineering, as a distinct undergraduate degree, is rare — typically packaged inside a broader Biosciences and Bioengineering programme or reached through postgraduate work.</p>
+  </div>
+
+  <div class="landscape">
+    <div>
+      <div class="field-name"><em>Biotechnology</em></div>
+      <div class="tier">
+        <div class="tier-label">Tier I &nbsp;·&nbsp; Research-heavy</div>
+        <ul>
+          <li>IIT Delhi, Kharagpur, Roorkee</li>
+          <li>IIT Guwahati (BSBE)</li>
+          <li>ICT Mumbai</li>
+          <li>Anna University</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Tier II &nbsp;·&nbsp; Strong industry pipeline</div>
+        <ul>
+          <li>VIT Vellore, SASTRA, Amity</li>
+          <li>Manipal Institute of Technology</li>
+          <li>SRM, BITS Pilani</li>
+        </ul>
+      </div>
+      <p class="field-note">What to look for: bioprocess laboratory facilities, industry MoUs with Biocon or Syngene, and placement data specifically in biotechnology — not aggregate CTC.</p>
+    </div>
+    <div>
+      <div class="field-name"><em>Biomedical Engineering</em></div>
+      <div class="tier">
+        <div class="tier-label">Tier I</div>
+        <ul>
+          <li>IIT Madras (Biomedical Devices)</li>
+          <li>IIT Hyderabad</li>
+          <li>IIT Bombay (BME via IDC)</li>
+          <li>IISc Bangalore (MS &amp; PhD)</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Tier II</div>
+        <ul>
+          <li>MIT Manipal (B.Tech BME)</li>
+          <li>SRM, VIT, Amrita</li>
+          <li>Osmania, Jadavpur</li>
+        </ul>
+      </div>
+      <p class="field-note">What to look for: clinical hospital partnerships, medical imaging and biosignal laboratories, faculty with medical-device industry experience. Weak programmes teach BME as diluted electronics.</p>
+    </div>
+    <div>
+      <div class="field-name"><em>Bioengineering</em></div>
+      <div class="tier">
+        <div class="tier-label">Tier I</div>
+        <ul>
+          <li>IIT Guwahati (BSBE)</li>
+          <li>IIT Madras (Biological Engineering)</li>
+          <li>IISc (integrated MTech)</li>
+        </ul>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Adjacent paths</div>
+        <ul>
+          <li>Biotechnology followed by an MS or PhD abroad</li>
+          <li>Computer Science or Electrical Engineering with computational biology electives</li>
+        </ul>
+      </div>
+      <p class="field-note">What to look for: strong computational faculty, systems or synthetic biology laboratories, doctoral placement record. Options at the undergraduate level are genuinely thin.</p>
+    </div>
+  </div>
+
+  <div class="editorial-note">
+    <div class="editorial-note-label">Editor's note</div>
+    Most private colleges branding themselves "Biotechnology" or "BME" run an IT placement engine underneath the biological signage. The correct question to ask an admissions office is not for the average package but for the last three years of placement data, filtered to the actual field. Programmes that cannot produce this on request have already told you what you need to know.
+  </div>
+
+  <div class="footnote-line">
+    <span class="tag tag-l">L</span> Programme listings are widely recognized as of publication; verify current status and specializations directly with each institution.
+  </div>
+</section>
+
+<!-- ============================================================
+     VI. DEGREE CEILINGS
+     ============================================================ -->
+<section id="ceiling">
+  <div class="section-head">
+    <div>
+      <span class="section-num">VI. Degree Ceilings</span>
+      <h2 class="section-title">A Bachelor's is the beginning, not the destination.</h2>
+    </div>
+    <p class="section-standfirst">In all three fields, the degree level at which a student stops determines what roles they can hold. Unlike Computer Science, where a BTech can carry a graduate to a senior individual-contributor role, biology-adjacent engineering has a real ceiling at the undergraduate level. This is the single most under-discussed fact of the three majors.</p>
+  </div>
+
+  <div class="ceilings">
+    <div class="row">
+      <div>
+        <div class="deg-mark">BS</div>
+        <div class="deg-sub">Four years · India entry</div>
+      </div>
+      <div class="deg-body">
+        Bench scientist, laboratory technician, quality control, manufacturing support, applications engineer. Real work, but limited autonomy over what is researched or designed. Common salary band in India: <span class="num">₹3.5–7 LPA</span>.
+      </div>
+      <div>
+        <div class="deg-ceiling-label">Career ceiling</div>
+        <div class="deg-ceiling-bar"><div class="deg-ceiling-fill" style="width: 30%;"></div></div>
+        <p class="deg-ceiling-note">Middle-management or senior technician. Rarely a principal scientist or R&amp;D lead.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="deg-mark">MS</div>
+        <div class="deg-sub">Two years further · India or abroad</div>
+      </div>
+      <div class="deg-body">
+        Independent scientist, project lead, regulatory affairs, clinical research associate, specialized engineering roles. Opens doors to global roles. Entry US: <span class="num">$75–95K</span>. Entry India, good programme: <span class="num">₹8–15 LPA</span>.
+      </div>
+      <div>
+        <div class="deg-ceiling-label">Career ceiling</div>
+        <div class="deg-ceiling-bar"><div class="deg-ceiling-fill" style="width: 65%;"></div></div>
+        <p class="deg-ceiling-note">Senior scientist, department head. R&amp;D leadership possible but harder without a doctorate.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <div class="deg-mark">PhD</div>
+        <div class="deg-sub">Five to six years · usually abroad</div>
+      </div>
+      <div class="deg-body">
+        Principal investigator, R&amp;D director, founder, faculty. The only degree that unlocks "deciding what to research" as a job description. Higher upside, longer runway. Industry PhD in the US: <span class="num">$120–180K+</span>. Bioengineering, in particular, is difficult to build a career in without one.
+      </div>
+      <div>
+        <div class="deg-ceiling-label">Career ceiling</div>
+        <div class="deg-ceiling-bar"><div class="deg-ceiling-fill" style="width: 95%;"></div></div>
+        <p class="deg-ceiling-note">Practically uncapped. Trade-off: the opportunity cost of half a decade.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-ceiling-notes">
+    <div>
+      <h4>Biotechnology</h4>
+      <p>The most BS-friendly of the three in India. Real industry roles exist. R&amp;D leadership, however, still requires an MS and ideally a doctorate.</p>
+    </div>
+    <div>
+      <h4>Biomedical Engineering</h4>
+      <p>The middle position. A Bachelor's opens applications engineering and clinical roles; an MS opens device design and regulatory; a PhD opens R&amp;D.</p>
+    </div>
+    <div>
+      <h4>Bioengineering</h4>
+      <p>The hardest to build a career on with an undergraduate degree alone. The MS or PhD is not optional. If the postgraduate path is off the table, reconsider Biotechnology.</p>
+    </div>
+  </div>
+
+  <div class="footnote-line">
+    <span class="tag tag-l">L</span> Ceilings above reflect typical industry patterns. Individuals occasionally exceed them; planning against the median is nonetheless the safer bet.
+  </div>
+</section>
+
+<!-- ============================================================
+     VII. REGULATORY
+     ============================================================ -->
+<section id="regulatory">
+  <div class="section-head">
+    <div>
+      <span class="section-num">VII. The Regulatory Question</span>
+      <h2 class="section-title">Why "regulatory" is a genuine career.</h2>
+    </div>
+    <p class="section-standfirst">Every device, drug, and diagnostic marketed in India passes through CDSCO. In the United States, the FDA. In Europe, EMA and MDR. Regulatory affairs is where BME and Biotechnology graduates with strong writing quietly do very well — and it is one of the few roles in which a Bachelor's is a genuinely complete career, not a ceiling.</p>
+  </div>
+
+  <div class="reg-tabs">
+    <button class="reg-tab" data-class="1">
+      <div class="reg-tab-cat">Class I &nbsp;·&nbsp; Category A</div>
+      <div class="reg-tab-risk">Low risk</div>
+      <div class="reg-tab-desc">Bandages, gloves, tongue depressors</div>
+    </button>
+    <button class="reg-tab active" data-class="2">
+      <div class="reg-tab-cat">Class II &nbsp;·&nbsp; Category B–C</div>
+      <div class="reg-tab-risk">Moderate risk</div>
+      <div class="reg-tab-desc">Infusion pumps, X-ray machines, wheelchairs</div>
+    </button>
+    <button class="reg-tab" data-class="3">
+      <div class="reg-tab-cat">Class III &nbsp;·&nbsp; Category D</div>
+      <div class="reg-tab-risk">High risk</div>
+      <div class="reg-tab-desc">Pacemakers, heart valves, defibrillators</div>
+    </button>
+  </div>
+
+  <div id="reg-detail" class="reg-detail"></div>
+
+  <div class="footnote-line">
+    <span class="tag tag-c">C</span> FDA device classes and CDSCO device categories are established regulatory frameworks. Details are simplified for orientation, not legal reference.
+  </div>
+</section>
+
+<!-- ============================================================
+     VIII. CAREERS
+     ============================================================ -->
+<section id="careers">
+  <div class="section-head">
+    <div>
+      <span class="section-num">VIII. The Economics</span>
+      <h2 class="section-title">Real numbers, in the right currency.</h2>
+    </div>
+    <p class="section-standfirst">Two figures matter. The starting salary a graduate can realistically expect, and the industry density of the place they will live. India first, because that is where the decision is being made. The United States and Europe follow, as context for those planning to move.</p>
+  </div>
+
+  <figure class="figure">
+    <div class="figure-frame">
+      <div class="figure-label">Figure 2</div>
+      <div class="figure-title">Entry salary bands by degree and geography</div>
+      <div class="chart-box">
+        <canvas id="salaryChart"></canvas>
+      </div>
+      <p class="figure-caption">India figures in lakhs per annum; United States figures in thousands of dollars. Both are entry-level bands for graduates of Tier I or Tier II programmes. <span class="tag tag-l">L</span></p>
+    </div>
+  </figure>
+
+  <div class="hubs">
+    <div>
+      <h4>India</h4>
+      <div class="hub">
+        <div class="hub-head"><div class="hub-name">Bengaluru</div><div class="hub-cat">Biotech · BME · BioE</div></div>
+        <p class="hub-desc">Biocon, Syngene, Strand Life Sciences, GE Healthcare, Philips Innovation Campus, Siemens Healthineers, and a dense biotechnology-startup layer beneath them. The single most balanced hub for all three fields.</p>
+      </div>
+      <div class="hub">
+        <div class="hub-head"><div class="hub-name">Hyderabad · Genome Valley</div><div class="hub-cat">Biotech-heavy</div></div>
+        <p class="hub-desc">Bharat Biotech, Dr. Reddy's, Shantha Biotechnics, Aurobindo Pharma. For vaccines and pharmaceutical manufacturing, the epicentre.</p>
+      </div>
+      <div class="hub">
+        <div class="hub-head"><div class="hub-name">Mumbai · Pune</div><div class="hub-cat">Pharma · Biotech</div></div>
+        <p class="hub-desc">Serum Institute (Pune), Cipla, Sun Pharma, Lupin. Heavy on formulations, R&amp;D, and clinical development.</p>
+      </div>
+      <div class="hub">
+        <div class="hub-head"><div class="hub-name">Chennai · Ahmedabad</div><div class="hub-cat">Devices · Pharma</div></div>
+        <p class="hub-desc">A growing medical device manufacturing cluster in Chennai, and long-established pharma manufacturing in Ahmedabad.</p>
+      </div>
+    </div>
+    <div>
+      <h4>Where postgraduate work leads</h4>
+      <div class="hub">
+        <div class="hub-head"><div class="hub-name">Boston · Cambridge</div><div class="hub-cat">Biotech · BioE</div></div>
+        <p class="hub-desc">The densest biotechnology cluster in the world. Moderna, Vertex, Ginkgo, and hundreds of startups; MIT and Harvard as gravitational anchors.</p>
+      </div>
+      <div class="hub">
+        <div class="hub-head"><div class="hub-name">San Francisco Bay</div><div class="hub-cat">BioE · Devices</div></div>
+        <p class="hub-desc">Genentech, Illumina, plus a wave of AI-for-biology startups. Stanford and UCSF supply the talent.</p>
+      </div>
+      <div class="hub">
+        <div class="hub-head"><div class="hub-name">Minneapolis</div><div class="hub-cat">BME · Devices</div></div>
+        <p class="hub-desc">Medtronic headquarters. The medical device capital of the United States.</p>
+      </div>
+      <div class="hub">
+        <div class="hub-head"><div class="hub-name">Zurich · Basel · Munich</div><div class="hub-cat">Pharma · Devices</div></div>
+        <p class="hub-desc">Roche, Novartis, Siemens Healthineers. English-language master's programmes are increasingly common.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TAKEAWAY
+     ============================================================ -->
+<section>
+  <div class="takeaway">
+    <span class="section-num">In Closing</span>
+    <h2 class="section-title">Three questions worth more than any brochure.</h2>
+
+    <div class="takeaway-q">
+      <h3><span class="num">i.</span>Does the work sound like the day you want?</h3>
+      <p>The "day in the fourth year" descriptions in §III are more diagnostic than any salary chart. If one of them sounds like a good Tuesday and the others do not, that is real signal.</p>
+    </div>
+    <div class="takeaway-q">
+      <h3><span class="num">ii.</span>Is postgraduate study part of the plan?</h3>
+      <p>If a Bachelor's is the endpoint, Biotechnology is the safest bet in India. Biomedical Engineering is workable. Bioengineering without an MS or a PhD is a hard road; plan the postgraduate path from the first year, or reconsider.</p>
+    </div>
+    <div class="takeaway-q">
+      <h3><span class="num">iii.</span>Has the college produced real data?</h3>
+      <p>The last three years of placement data, <em>filtered to the actual field</em>. Faculty publication records. Laboratories one can visit in person. Programmes unable to produce these on request are telling you exactly what you need to know.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COLOPHON
+     ============================================================ -->
+<div class="colophon">
+  <div class="colophon-label">Colophon</div>
+  <p>Skill-axis weightings drawn from ABET and AICTE curricular comparisons. Indian salary bands reflect typical entry-level campus placements for the 2024–25 cycle. United States salary approximations are from publicly available BLS medians. Programme tier listings are widely recognized as of publication; specific admissions cycles change year to year. Regulatory frameworks are simplified for orientation, not legal reference. Set in Source Serif 4 and Source Sans 3.</p>
+</div>
+
+<footer>
+  <span>Three Paths, One Decision</span>
+  <span>Volume I · Number 1</span>
+  <span>2026</span>
+</footer>
+
+</main>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+/* Radar chart */
+(function () {
+  const ctx = document.getElementById('radarChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['Wet-Lab Biology', 'Chemistry', 'Physics & Hardware', 'Math & Computation', 'Clinical Application', 'Systems / Modelling'],
+      datasets: [
+        { label: 'Biotechnology',          data: [9, 8, 3, 4, 4, 5], borderColor: '#556b2f', backgroundColor: 'rgba(85,107,47,0.10)', borderWidth: 1.5, pointRadius: 3, pointBackgroundColor: '#556b2f' },
+        { label: 'Biomedical Engineering', data: [4, 4, 9, 7, 9, 6], borderColor: '#3b6b7a', backgroundColor: 'rgba(59,107,122,0.10)', borderWidth: 1.5, pointRadius: 3, pointBackgroundColor: '#3b6b7a' },
+        { label: 'Bioengineering',         data: [6, 5, 5, 9, 5, 9], borderColor: '#8b1a1a', backgroundColor: 'rgba(139,26,26,0.10)', borderWidth: 1.5, pointRadius: 3, pointBackgroundColor: '#8b1a1a' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        r: {
+          suggestedMin: 0, suggestedMax: 10,
+          grid: { color: '#d4cec3' },
+          angleLines: { color: '#d4cec3' },
+          pointLabels: { color: '#1a1a1a', font: { family: 'Source Serif 4', size: 13, style: 'italic' } },
+          ticks: { display: false }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            color: '#1a1a1a',
+            font: { family: 'Source Sans 3', size: 11, weight: '600' },
+            boxWidth: 10, boxHeight: 10,
+            usePointStyle: true, pointStyle: 'rect',
+            padding: 20
+          }
+        }
+      }
+    }
+  });
+})();
+
+/* Course expanders */
+document.querySelectorAll('#courses .course').forEach(el => {
+  el.addEventListener('click', () => el.classList.toggle('open'));
+});
+
+/* Track tabs */
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const track = btn.dataset.track;
+    document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.track-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + track).classList.add('active');
+  });
+});
+
+/* Quiz */
+const questions = [
+  {
+    q: "Which capstone project sounds most alive?",
+    a: [
+      { text: "Engineering a bacterial strain to produce a low-cost insulin analogue.", biotech: 3, bme: 0, bioe: 1 },
+      { text: "Designing a low-cost ECG that works reliably in rural clinics.",          biotech: 0, bme: 3, bioe: 0 },
+      { text: "Modelling a metabolic pathway to predict a genetic disease.",             biotech: 1, bme: 0, bioe: 3 },
+      { text: "Growing a scaffold of cardiac tissue on a hydrogel matrix.",              biotech: 1, bme: 1, bioe: 3 }
+    ]
+  },
+  {
+    q: "Which subject would you tolerate the most late nights for?",
+    a: [
+      { text: "Biochemistry and molecular biology.",                                     biotech: 3, bme: 0, bioe: 1 },
+      { text: "Circuits, signals, and mechanical design.",                               biotech: 0, bme: 3, bioe: 1 },
+      { text: "Differential equations, linear algebra, and code.",                       biotech: 0, bme: 1, bioe: 3 },
+      { text: "Cell biology combined with computational modelling.",                     biotech: 1, bme: 0, bioe: 3 }
+    ]
+  },
+  {
+    q: "Where do you want to spend afternoons in the fourth year?",
+    a: [
+      { text: "In a wet laboratory with cell cultures and PCR.",                         biotech: 3, bme: 0, bioe: 1 },
+      { text: "In an electronics laboratory prototyping a device.",                      biotech: 0, bme: 3, bioe: 0 },
+      { text: "At a laptop, writing simulations or machine learning code.",              biotech: 0, bme: 1, bioe: 3 },
+      { text: "Shadowing a clinician to understand a real problem firsthand.",           biotech: 0, bme: 3, bioe: 1 }
+    ]
+  },
+  {
+    q: "What kind of impact is motivating?",
+    a: [
+      { text: "A new therapy or vaccine that reaches millions.",                         biotech: 3, bme: 0, bioe: 1 },
+      { text: "A diagnostic device a hospital uses every day.",                          biotech: 0, bme: 3, bioe: 0 },
+      { text: "A model or platform that others build on.",                                biotech: 0, bme: 1, bioe: 3 },
+      { text: "A synthetic cell or organ that did not exist before.",                     biotech: 1, bme: 1, bioe: 3 }
+    ]
+  },
+  {
+    q: "Postgraduate plans, honestly.",
+    a: [
+      { text: "Industry, straight after the Bachelor's.",                                biotech: 3, bme: 2, bioe: 0 },
+      { text: "Open to an MS if it opens better roles.",                                 biotech: 2, bme: 3, bioe: 2 },
+      { text: "A doctorate is the goal. Research is the point.",                         biotech: 1, bme: 2, bioe: 3 },
+      { text: "Undecided. Waiting to see which subjects take hold.",                     biotech: 2, bme: 2, bioe: 2 }
+    ]
+  }
+];
+const roman = ['I','II','III','IV','V'];
+let qIdx = 0;
+const scores = { biotech: 0, bme: 0, bioe: 0 };
+
+function renderQ() {
+  const q = questions[qIdx];
+  document.getElementById('q-num').textContent  = `Question ${roman[qIdx]} of V`;
+  document.getElementById('q-pct').textContent  = `${Math.round((qIdx / questions.length) * 100)} per cent`;
+  document.getElementById('q-bar').style.width  = `${(qIdx / questions.length) * 100}%`;
+  document.getElementById('q-text').textContent = q.q;
+  const box = document.getElementById('q-options');
+  box.innerHTML = '';
+  q.a.forEach(opt => {
+    const b = document.createElement('button');
+    b.className = 'q-option';
+    b.textContent = opt.text;
+    b.addEventListener('click', () => {
+      scores.biotech += opt.biotech;
+      scores.bme     += opt.bme;
+      scores.bioe    += opt.bioe;
+      qIdx++;
+      if (qIdx < questions.length) renderQ();
+      else showResults();
+    });
+    box.appendChild(b);
+  });
+}
+
+function showResults() {
+  document.getElementById('quiz-step').classList.add('hidden');
+  document.getElementById('quiz-results').classList.remove('hidden');
+  const total = scores.biotech + scores.bme + scores.bioe || 1;
+  const pct = {
+    biotech: Math.round((scores.biotech / total) * 100),
+    bme:     Math.round((scores.bme     / total) * 100),
+    bioe:    Math.round((scores.bioe    / total) * 100)
+  };
+  document.getElementById('s-biotech').textContent = pct.biotech + '%';
+  document.getElementById('s-bme').textContent     = pct.bme     + '%';
+  document.getElementById('s-bioe').textContent    = pct.bioe    + '%';
+  document.getElementById('b-biotech').style.width = pct.biotech + '%';
+  document.getElementById('b-bme').style.width     = pct.bme     + '%';
+  document.getElementById('b-bioe').style.width    = pct.bioe    + '%';
+
+  const winner = Object.entries(pct).sort((a,b) => b[1]-a[1])[0][0];
+  const names = { biotech: 'Biotechnology', bme: 'Biomedical Engineering', bioe: 'Bioengineering' };
+  const bodies = {
+    biotech: "The lean points toward biology as the primary craft. The wet laboratory, the process, the therapy at the end. Biotechnology in India has genuine industry depth, but an MS should be planned early if R&D leadership is the goal.",
+    bme:     "The lean points toward engineering with clinical purpose. Devices, imaging, hardware one can hold in the hand. BME rewards students who enjoy building things and can also read a clinical paper.",
+    bioe:    "The lean points toward the abstract layer: modelling, systems, synthesis. The highest ceiling of the three, and the hardest to build a career in without postgraduate work. Plan the MS or PhD from the first year."
+  };
+  document.getElementById('result-headline').innerHTML = `The lean: <em>${names[winner]}</em>.`;
+  document.getElementById('result-body').textContent = bodies[winner];
+}
+
+function resetQuiz() {
+  qIdx = 0; scores.biotech = 0; scores.bme = 0; scores.bioe = 0;
+  document.getElementById('quiz-results').classList.add('hidden');
+  document.getElementById('quiz-step').classList.remove('hidden');
+  renderQ();
+}
+renderQ();
+
+/* Regulatory */
+const regData = {
+  '1': {
+    fda:    'General controls only. Most products exempt from premarket review.',
+    cdsco:  'Notification-based registration for most products in the category.',
+    time:   'Under three months',
+    cost:   '$1,000–5,000',
+    role:   'Entry-level regulatory associate or quality-assurance analyst. Sensible first role for a BME or Biotech graduate.'
+  },
+  '2': {
+    fda:    '510(k) submission. Demonstrate substantial equivalence to a legally marketed predicate device.',
+    cdsco:  'Full registration through CDSCO, with clinical evaluation required at higher categories.',
+    time:   'Six to twelve months',
+    cost:   '$30,000–200,000',
+    role:   'Regulatory affairs specialist. The salary jump is genuine. A Bachelor\'s plus a few years of experience becomes a real career, not a ceiling.'
+  },
+  '3': {
+    fda:    'Premarket Approval (PMA). Full clinical trial data required. The most demanding US pathway.',
+    cdsco:  'Full registration and clinical trials in India.',
+    time:   'Two to five years',
+    cost:   '$1M–100M+',
+    role:   'Senior regulatory strategist. Typically an MS-level role, often paired with clinical or legal training.'
+  }
+};
+
+function renderReg(cls) {
+  const d = regData[cls];
+  document.getElementById('reg-detail').innerHTML = `
+    <div>
+      <div class="reg-jur">
+        <h5>United States &nbsp;·&nbsp; FDA</h5>
+        <p>${d.fda}</p>
+      </div>
+      <div class="reg-jur">
+        <h5>India &nbsp;·&nbsp; CDSCO</h5>
+        <p>${d.cdsco}</p>
+      </div>
+    </div>
+    <div>
+      <div class="reg-stat-label">Typical approval timeline</div>
+      <div class="reg-stat-value">${d.time}</div>
+      <div class="reg-stat-label">Approximate cost (US)</div>
+      <div class="reg-stat-value">${d.cost}</div>
+      <div class="reg-career">
+        <p>${d.role}</p>
+      </div>
+    </div>
+  `;
+}
+document.querySelectorAll('.reg-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.reg-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderReg(btn.dataset.class);
+  });
+});
+renderReg('2');
+
+/* Salary chart */
+(function () {
+  const ctx = document.getElementById('salaryChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Biotechnology', 'Biomedical Engineering', 'Bioengineering'],
+      datasets: [
+        { label: 'India — BS (LPA)',  data: [4.5, 5.5, 5.0], backgroundColor: '#1a1a1a', barPercentage: 0.6, categoryPercentage: 0.75 },
+        { label: 'India — MS (LPA)',  data: [10, 12, 11],    backgroundColor: '#595552', barPercentage: 0.6, categoryPercentage: 0.75 },
+        { label: 'US — BS ($K)',      data: [65, 75, 72],    backgroundColor: '#a89f92', barPercentage: 0.6, categoryPercentage: 0.75 },
+        { label: 'US — MS ($K)',      data: [85, 92, 90],    backgroundColor: '#8b1a1a', barPercentage: 0.6, categoryPercentage: 0.75 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            color: '#1a1a1a',
+            font: { family: 'Source Sans 3', size: 11, weight: '600' },
+            boxWidth: 10, boxHeight: 10,
+            usePointStyle: true, pointStyle: 'rect',
+            padding: 20
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: '#1a1a1a', font: { family: 'Source Serif 4', size: 13, style: 'italic' } },
+          border: { color: '#1a1a1a' }
+        },
+        y: {
+          grid: { color: '#d4cec3' },
+          ticks: { color: '#595552', font: { family: 'Source Sans 3', size: 11 } },
+          border: { display: false }
+        }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
